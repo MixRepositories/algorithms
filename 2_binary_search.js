@@ -1,25 +1,32 @@
+/*
+* Бинарный поиск работает только с отсортированным массивом
+* Принцип:
+* 1) Делим массив пополам
+* 2) Проверям искомое значение больше или меньше текщего
+* 3) Отсекаем лишнюю часть
+* 4) Повторяем до того пака старт и стоп не сойдутся
+* */
 const array = [1, 3, 4, 5, 6, 7, 8, 10, 11, 12, 15]
 let count = 0
 
 function binarySearch (array, item) {
-  let start = 0,
-    end = array.length,
-    middle,
-    position = -1,
-    found = false
+  let position = -1
+  let start = 0
+  let end = array.length
+  let isSearching = true
+  let meddium
 
-  while (!found && start <= end) {
+  while (isSearching && start <= end) {
+    meddium = Math.floor((end + start) / 2)
     count++
-    middle = Math.floor((start + end) / 2)
-    if (item === array[middle]) {
-      found = true
-      position = middle
-    } else if (item < array[middle]) end = middle - 1
-    else if (item > array[middle]) start = middle + 1
+    if (array[meddium] === item) {
+      isSearching = false
+      position = meddium
+    } else if (array[meddium] < item) start = meddium + 1
+    else end = meddium - 1
   }
-
   return position
 }
 
-console.log('index:', binarySearch(array, 7))
+console.log('index:', binarySearch(array, 5))
 console.log('count:', count)
