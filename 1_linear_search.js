@@ -4,9 +4,9 @@ let count = 0
 function searchingValue (array, item) {
   for (let i = 0; i < array.length; i++) {
     count++
-    if(array[i] === item) return i
+    if (item === array[i]) return i
   }
 }
 
-console.log('index:', searchingValue(array, 1))
+console.log('index:', searchingValue(array, 9))
 console.log('count:', count)

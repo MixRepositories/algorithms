@@ -1,4 +1,4 @@
-/* Сортировка хуара (Быстрая сортировка)
+/* Сортировка Хоара (Быстрая сортировка)
 * 1) пишем случай выхода из рекурсии (когда дляна массива будет меньше или равен 1)
 * 2) Определяемс середину массива
 * 3) Создаем два массива для больших и меньших значений
@@ -13,19 +13,18 @@ let count = 0
 function quickSort (array) {
   if (array.length <= 1) return array
 
-  let middleIndex = Math.floor(array.length / 2)
+  let middle = Math.floor(array.length / 2)
   const less = []
-  const greater = []
+  const more = []
 
   for (let i = 0; i < array.length; i++) {
     count++
-    if (i === middleIndex) continue
-    if (array[i] >  array[middleIndex]) greater.push(array[i])
+    if (i === middle) continue
+
+    if (array[middle] < array[i]) more.push(array[i])
     else less.push(array[i])
   }
-
-  return [...quickSort(less), array[middleIndex], ...quickSort(greater)]
-
+  return [...quickSort(less), array[middle], ...quickSort(more)]
 }
 
 console.log('sorted array:', quickSort(array))
